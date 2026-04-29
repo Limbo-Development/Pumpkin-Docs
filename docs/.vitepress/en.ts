@@ -136,6 +136,20 @@ export const en = defineConfig({
                             },
                         ],
                     },
+                    {
+                        text: "Go",
+                        collapsed: false,
+                        items: [
+                            {
+                                text: "Quick Start",
+                                link: "/plugin-dev/go/quick-start",
+                            },
+                            {
+                                text: "Basic Logic",
+                                link: "/plugin-dev/go/basic-logic",
+                            },
+                        ],
+                    },
                 ],
             },
             {
