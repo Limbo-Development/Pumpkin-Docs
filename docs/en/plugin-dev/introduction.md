@@ -6,9 +6,10 @@ If you run into any issues please reach out on [our Discord server](https://disc
 :::
 
 The Pumpkin Plugin API takes inspiration from the Spigot/Bukkit plugin API in many places,
-so if you have previous experience with these and have experience with Rust, Python, or C development,
+so if you have previous experience with these and have experience with Rust, Python, C#, or C development,
 you should have a pretty easy time writing plugins for Pumpkin. :smile:
 
 * [Rust API](https://github.com/Pumpkin-MC/Pumpkin)
 * [Python API](https://github.com/Pumpkin-MC/pumpkin-python)
+* [C# API](https://github.com/Pumpkin-MC/pumpkin-api-cs)
 * [C API](https://github.com/Pumpkin-MC/pumpkin-api-c)
