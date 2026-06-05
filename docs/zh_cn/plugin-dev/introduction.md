@@ -10,7 +10,7 @@ Pumpkin 插件与服务器软件在很深的层次上集成，允许实现其他
 Pumpkin 插件 API 在很多方面受到 Spigot/Bukkit 插件 API 的启发，因此如果您有这些 API 的使用经验并且熟悉 Rust、Python、C#、Go 或 C 开发，您应该能够相对轻松地为 Pumpkin 编写插件。 :smile:
 
 * [Rust API](https://github.com/Pumpkin-MC/Pumpkin)
-* [Python API](https://github.com/Pumpkin-MC/pumpkin-python)
+* [Python API](https://github.com/Pumpkin-MC/pumpkin-api-py)
 * [C# API](https://github.com/Pumpkin-MC/pumpkin-api-cs)
 * [Go API](https://github.com/Pumpkin-MC/pumpkin-api-go)
 * [C API](https://github.com/Pumpkin-MC/pumpkin-api-c)
