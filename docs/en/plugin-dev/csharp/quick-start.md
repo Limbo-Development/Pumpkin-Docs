@@ -114,3 +114,57 @@ dotnet build -c Release
 ```
 
 The compiled `.wasm` file will be located in `bin/Release/net10.0/wasi-wasm/publish/`. You can place this file in the `plugins` folder of your Pumpkin server.
+
+## Plugin Structure
+
+The C# API uses a class-based approach where your plugin class implements the required interfaces:
+
+- `IPluginWorldExports`: Main plugin lifecycle (InitPlugin, OnLoad, OnUnload, HandleEvent, HandleCommand, HandleTask)
+- `IMetadataExports`: Plugin metadata (name, version, authors, description, dependencies)
+
+## Event Handling
+
+The `HandleEvent` method receives an event ID and event data. You can switch on the event ID to handle different event types:
+
+```csharp
+public static IEventImports.Event HandleEvent(uint eventId, IServerImports.Server server, IEventImports.Event @event)
+{
+    // Event IDs correspond to the WIT EventType enum
+    // Handle different events based on the eventId
+    return @event;
+}
+```
+
+## Command Handling
+
+The `HandleCommand` method receives a command ID, sender, server, and consumed arguments:
+
+```csharp
+public static int HandleCommand(uint commandId, ICommandImports.CommandSender sender, IServerImports.Server server, ICommandImports.ConsumedArgs args)
+{
+    // Handle command execution
+    return 0; // Return 0 for success
+}
+```
+
+## Task Handling
+
+The `HandleTask` method is called when a scheduled task fires:
+
+```csharp
+public static void HandleTask(uint handlerId, IServerImports.Server server)
+{
+    // Handle scheduled task execution
+}
+```
+
+## Logging
+
+The C# API provides a logging interface:
+
+```csharp
+ILoggingImports.Log(ILoggingImports.Level.Info, "This is an info message");
+ILoggingImports.Log(ILoggingImports.Level.Warn, "This is a warning message");
+ILoggingImports.Log(ILoggingImports.Level.Error, "This is an error message");
+ILoggingImports.Log(ILoggingImports.Level.Debug, "This is a debug message");
+```

@@ -150,6 +150,24 @@ export const en = defineConfig({
                             },
                         ],
                     },
+                    {
+                        text: "TypeScript",
+                        collapsed: false,
+                        items: [
+                            {
+                                text: "Quick Start",
+                                link: "/plugin-dev/typescript/quick-start",
+                            },
+                            {
+                                text: "Basic Logic",
+                                link: "/plugin-dev/typescript/basic-logic",
+                            },
+                            {
+                                text: "Events",
+                                link: "/plugin-dev/typescript/events",
+                            },
+                        ],
+                    },
                 ],
             },
             {

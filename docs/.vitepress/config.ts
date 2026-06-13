@@ -12,6 +12,12 @@ import { jaJP } from "./ja_jp";
 export default defineConfig({
     title: "Pumpkin",
 
+    vite: {
+        server: {
+            allowedHosts: ["pumpkin-docs.inarifoxed.xyz"]
+        }
+    },
+
     cleanUrls: true,
     rewrites: {
         'en/:rest*': ':rest*'

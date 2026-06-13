@@ -62,3 +62,43 @@ Replace `/path/to/wasi-sdk` with the actual path to your WASI SDK.
 ```
 
 This will generate a `my_plugin.wasm` file that you can place in the `plugins` folder of your Pumpkin server.
+
+## Plugin Structure
+
+The C API uses a struct-based approach. Your plugin is defined as a `pumpkin_plugin_t` struct with function pointers:
+
+```c
+typedef struct {
+    pumpkin_get_metadata_t get_metadata;  // Returns plugin metadata
+    pumpkin_on_load_t on_load;            // Called when plugin is loaded
+    pumpkin_on_unload_t on_unload;        // Called when plugin is unloaded
+} pumpkin_plugin_t;
+```
+
+## Metadata
+
+The metadata function returns a `pumpkin_metadata_t` struct:
+
+```c
+typedef struct {
+    const char* name;              // Plugin name
+    const char* version;           // Plugin version
+    const char** authors;          // Array of author names
+    size_t authors_count;          // Number of authors
+    const char* description;       // Plugin description
+    const char** dependencies;     // Array of dependency names
+    size_t dependencies_count;     // Number of dependencies
+} pumpkin_metadata_t;
+```
+
+## Event Handling
+
+The C API provides a default event handler that passes events through. To handle specific events, you would need to check the event type and modify the event data accordingly.
+
+## Command Handling
+
+The C API provides a default command handler that returns a "Command not implemented" error. To handle specific commands, you would need to check the command ID and implement the logic accordingly.
+
+## Key Macros
+
+- `REGISTER_PUMPKIN_PLUGIN(plugin)`: Registers your plugin with the Pumpkin runtime. Takes a `pumpkin_plugin_t` struct as an argument.

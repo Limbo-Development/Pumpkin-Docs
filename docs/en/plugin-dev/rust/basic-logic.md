@@ -105,3 +105,80 @@ fn register_event_handler<E, H>(&self, handler: H, event_priority: EventPriority
 ```
 
 Registers a new event handler with a set priority and if it is blocking or not.
+
+```rust
+fn register_permission(&self, permission: &Permission) -> Result<()>
+```
+
+Registers a new permission node with the server.
+
+## Scheduling Tasks
+
+The Rust API provides a `SchedulerExt` trait that can be used to schedule tasks on the server's tick loop:
+
+```rust
+use pumpkin_plugin_api::scheduler::SchedulerExt;
+
+// Schedule a task to run once after 20 ticks (1 second)
+context.schedule_delayed_task(20, |server| {
+    server.log("One second has passed!");
+});
+
+// Schedule a task to run every 100 ticks (5 seconds)
+context.schedule_repeating_task(0, 100, |server| {
+    server.log("This runs every 5 seconds!");
+});
+```
+
+## Forms API
+
+The Rust API provides builders for creating Bedrock Edition forms:
+
+```rust
+use pumpkin_plugin_api::forms::{SimpleFormBuilder, ModalFormBuilder, CustomFormBuilder};
+
+// Simple form with buttons
+let form = SimpleFormBuilder::new("Title", "Content")
+    .button("Button 1", None)
+    .button("Button 2", None)
+    .build();
+
+// Modal form with two buttons
+let form = ModalFormBuilder::new("Title", "Are you sure?")
+    .button1("Yes")
+    .button2("No")
+    .build();
+
+// Custom form with various elements
+let form = CustomFormBuilder::new("Settings")
+    .label("Configure your settings")
+    .toggle("Enable notifications", true)
+    .slider("Volume", 0.0, 100.0, 1.0, 50.0)
+    .dropdown("Language", vec!["English".into(), "Spanish".into()], 0)
+    .input("Name", "Enter your name", "")
+    .build();
+```
+
+## Permissions
+
+The Rust API provides constants for requesting plugin permissions:
+
+```rust
+use pumpkin_plugin_api::permissions;
+
+// Request network permissions
+permissions::NETWORK_DNS    // DNS resolution
+permissions::NETWORK_TCP    // TCP sockets
+permissions::NETWORK_UDP    // UDP sockets
+permissions::HTTP_OUTBOUND  // HTTP connections
+
+// Request filesystem permissions
+permissions::FS_READ        // Read files outside data folder
+permissions::FS_WRITE       // Write files outside data folder
+permissions::FS_READ_DATA   // Read files within plugin data folder
+permissions::FS_WRITE_DATA  // Write files within plugin data folder
+
+// Request system permissions
+permissions::SYS_ENV        // Read environment variables
+permissions::SYS_INFO       // Read system information
+```
